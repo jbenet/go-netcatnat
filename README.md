@@ -27,7 +27,7 @@ You'll need to install [a great many things](https://www.youtube.com/watch?v=Nem
 
 4. You'll need these packages. If you've Chrome/Chromium, should already have
     them. Yes, two of these are A/V stuff; natty punches nat holes with
-    ultrasound. No, just kidding. natty got pulled out of chrome src, so for 
+    ultrasound. No, just kidding. natty got pulled out of chrome src, so for
     now the code still depends on that.
 
     ```sh
@@ -53,13 +53,24 @@ Next, in machine B launch `netcatnat`:
 
 ```sh
 > netcatnat --waddell <ip-of-machine-A>:62443
-
+using waddell server: <ip-of-machine-A>:62443
+nattywad: Waddell address changed
+nattywad: Connected to Waddell!! Id is: f67b6696-5d71-45e7-ada0-ba514c33fc91
 ```
 
-Finally, in machine C launch `netcatnat` again, with `<machine-B-server-ID>`
+Note the Id you get (here `f67b6696-5d71-45e7-ada0-ba514c33fc91`). Call it `<machine-B-ID>`.
+Finally, in machine C launch `netcatnat` again, with `<machine-B-ID>`
 
 ```sh
-> netcatnat --waddell <ip-of-machine-A>:62443 --id <machine-B-server-ID>
+> netcatnat --waddell <ip-of-machine-A>:62443 --id <machine-B-ID>
+using waddell server: :62443
+attempting to connect to: f67b6696-5d71-45e7-ada0-ba514c33fc91
+nattywad: Configuring nat traversal client with 1 server peers
+nattywad: Attempting traversal to f67b6696-5d71-45e7-ada0-ba514c33fc91
+nattywad: Connected to Waddell!! Id is: d241153a-3f39-4b3e-a752-53980320195c
+connected 192.168.1.56:64284 to 192.168.1.56:59149
+
+>> connected! enter text below to transmit <<
 
 ```
 
