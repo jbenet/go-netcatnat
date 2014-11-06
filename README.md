@@ -11,6 +11,8 @@ netty, a nat traversal tool, and its Go libs:
 Note that this is over raw UDP, so you might see packets reordered or dropped.
 Someone can add SCTP.
 
+![](http://jbenet.static.s3.amazonaws.com/eba94f4/natcat)
+
 ## Install
 
 You'll need to install [a great many things](https://www.youtube.com/watch?v=Nembr1ZeRc8):
@@ -82,4 +84,4 @@ connected 192.168.1.56:64284 to 192.168.1.56:59149
 Now, if all went well, you can enter text in either terminal and see it appear
 in the other. netcat. across nats.
 
-![](http://cdn.rsvlts.com/wp-content/uploads/2013/11/deal-with-it.jpg)
+![](http://jbenet.static.s3.amazonaws.com/81644e8/teddy-deal-with-it)
