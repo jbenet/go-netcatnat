@@ -21,7 +21,6 @@ You'll need to install [a great many things](https://www.youtube.com/watch?v=Nem
     ```
     go {get, install} github.com/jbenet/go-natnetcat/natnetcat
     ```
-    If it fails with `undefined: byteexec.Exec`, see: https://github.com/getlantern/go-natty/issues/3
 
 3. Install `waddell` signaling server:
 
