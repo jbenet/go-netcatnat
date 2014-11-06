@@ -14,17 +14,22 @@ You'll need to install [a great many things](https://www.youtube.com/watch?v=Nem
 
 1. Go (tested on 1.3)
 2. Install `netcatnat`:
+
     ```
     go install github.com/jbenet/go-natnetcat/natnetcat
     ```
+
 3. Install `waddell` signaling server:
+
     ```
     go install github.com/getlantern/waddell/waddell
     ```
+
 4. You'll need these packages. If you've Chrome/Chromium, should already have
     them. Yes, two of these are A/V stuff; natty punches nat holes with
-    ultrasound. No, just kidding. natty got pulled out of chrome src, so the
-    code still depends on them.
+    ultrasound. No, just kidding. natty got pulled out of chrome src, so for 
+    now the code still depends on that.
+
     ```sh
     # debian package names. your pkg mgr's might differ
     libnss3
