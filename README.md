@@ -8,6 +8,9 @@ netty, a nat traversal tool, and its Go libs:
 - [getlantern/go-natty](https://github.com/getlantern/go-natty) - natty bindings in Go
 - [getlantern/nattywad](https://github.com/getlantern/nattywad) - natty and waddell client libs
 
+Note that this is over raw UDP, so you might see packets reordered or dropped.
+Someone can add SCTP.
+
 ## Install
 
 You'll need to install [a great many things](https://www.youtube.com/watch?v=Nembr1ZeRc8):
@@ -16,13 +19,14 @@ You'll need to install [a great many things](https://www.youtube.com/watch?v=Nem
 2. Install `netcatnat`:
 
     ```
-    go install github.com/jbenet/go-natnetcat/natnetcat
+    go {get, install} github.com/jbenet/go-natnetcat/natnetcat
     ```
+    If it fails with `undefined: byteexec.Exec`, see: https://github.com/getlantern/go-natty/issues/3
 
 3. Install `waddell` signaling server:
 
     ```
-    go install github.com/getlantern/waddell/waddell
+    go {get, install} github.com/getlantern/waddell/waddell
     ```
 
 4. You'll need these packages. If you've Chrome/Chromium, should already have
