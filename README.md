@@ -21,8 +21,8 @@ You'll need to install [a great many things](https://www.youtube.com/watch?v=Nem
 2. Install `netcatnat`:
 
     ```
-    go get github.com/jbenet/go-natnetcat
-    go install github.com/jbenet/go-natnetcat/natnetcat
+    go get github.com/jbenet/go-netcatnat
+    go install github.com/jbenet/go-netcatnat/netcatnat
     ```
 
 3. Install `waddell` signaling server:
