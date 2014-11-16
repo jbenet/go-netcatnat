@@ -11,6 +11,7 @@ import (
 	"time"
 
 	nw "github.com/getlantern/nattywad"
+	udt "github.com/jbenet/go-udtwrapper/udt"
 )
 
 var waddellAddr string
@@ -52,10 +53,12 @@ func onClientSuccess(info *nw.TraversalInfo) {
 
 	laddr := info.LocalAddr
 	raddr := info.RemoteAddr
-	log("connected %s to %s\n", laddr, raddr)
-	if err := netcat(laddr, raddr); err != nil {
-		log("failed to netcat: %s\n", err)
-	}
+	log("connecting %s to %s\n", laddr, raddr)
+	go func() {
+		if err := netcat(laddr, raddr, false); err != nil {
+			log("failed to netcat: %s\n", err)
+		}
+	}()
 }
 
 func onClientFailure(info *nw.TraversalInfo) {
@@ -66,15 +69,32 @@ func onClientFailure(info *nw.TraversalInfo) {
 }
 
 func onServerSuccess(laddr, raddr *net.UDPAddr) bool {
-	log("connected %s to %s\n", laddr, raddr)
-	if err := netcat(laddr, raddr); err != nil {
-		log("failed to netcat: %s\n", err)
-	}
+	log("connecting %s to %s\n", laddr, raddr)
+	go func() {
+		if err := netcat(laddr, raddr, true); err != nil {
+			log("failed to netcat: %s\n", err)
+		}
+	}()
 	return true
 }
 
-func netcat(laddr, raddr *net.UDPAddr) error {
-	conn, err := net.DialUDP("udp", laddr, raddr)
+func netcat(laddr, raddr *net.UDPAddr, listen bool) error {
+	laddr2 := udt.WrapUDPAddr(laddr)
+	raddr2 := udt.WrapUDPAddr(raddr)
+
+	var conn net.Conn
+	var err error
+	if listen {
+		l, err2 := udt.ListenUDT("udt", laddr2)
+		if err2 != nil {
+			return err
+		}
+		log("listening at %s\n", laddr2)
+		conn, err = l.Accept()
+	} else {
+		log("dialing from %s to %s\n", laddr2, raddr2)
+		conn, err = udt.DialUDT("udt", laddr2, raddr2)
+	}
 	if err != nil {
 		return err
 	}
